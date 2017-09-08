@@ -1,0 +1,25 @@
+{
+  "name": "navi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gongtiexin/navi.git"
+  },
+  "keywords": [
+    "navi"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "author": "gongtiexin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gongtiexin/navi/issues"
+  },
+  "homepage": "https://github.com/gongtiexin/navi#readme"
+}
