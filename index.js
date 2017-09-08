@@ -3,7 +3,7 @@
 /**
  * sortBy根据数值大小排序,从大到小
  * */
-exports.bsortBy = function (name) {
+exports.sortBy = function (name) {
   return function (o, p) {
     var a, b;
     if (typeof o === "object" && typeof p === "object" && o && p) {
