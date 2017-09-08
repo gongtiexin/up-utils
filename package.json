@@ -6,6 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.hualongdata.com/frontend/hl-utils.git"
+  },
   "keywords": [
     "navi"
   ],
@@ -15,7 +19,7 @@
   "author": "gongtiexin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gongtiexin/navi/issues"
+    "url": "https://gitlab.hualongdata.com/frontend/hl-utils/issues"
   },
-  "homepage": "https://github.com/gongtiexin/navi#readme"
+  "homepage": "https://gitlab.hualongdata.com/frontend/hl-utils/blob/develop/readme.md"
 }
