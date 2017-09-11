@@ -49,7 +49,7 @@ exports.toDecimal2 = function (x) {
  * 方法只既检测对象本身的属性，不检测从原型继承的属性。
  * */
 exports.isOwnEmpty = function (obj) {
-  for (const name in obj) {
+  for (var name in obj) {
     if (obj.hasOwnProperty(name)) {
       return false;
     }
@@ -62,7 +62,7 @@ exports.isOwnEmpty = function (obj) {
  * */
 exports.filterNull = function (obj) {
   var _newPar = {};
-  for (const key in obj) {
+  for (var key in obj) {
     if ((obj[key] === 0 || obj[key]) && obj[key].toString().replace(/(^\s*)|(\s*$)/g, '') !== '') {
       _newPar[key] = obj[key];
     }
