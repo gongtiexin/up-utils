@@ -1,10 +1,8 @@
 import "babel-polyfill";
-import method from "./method";
+import utils from "./utils";
 import computedEchartsOption from "./echarts";
 
-const hl = {
-  method,
+export {
+  utils,
   computedEchartsOption
 };
-
-export default hl;

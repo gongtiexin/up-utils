@@ -1,6 +1,4 @@
-import "babel-polyfill";
-
-const method = {
+const utils = {
 
   /**
    * sortBy根据数值大小排序,从大到小
@@ -103,4 +101,4 @@ const method = {
 };
 
 
-export default method;
+export default utils;
