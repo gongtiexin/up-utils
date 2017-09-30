@@ -17,10 +17,9 @@ const option = {
   xAxis: {},
   yAxis: {},
   series: []
-
 };
 
-export default computedEchartsOption = (chartType, height, option = option, data, x, y, value) => {
+export default function computedEchartsOption(chartType, height, option = option, data, x, y, value) {
 
   switch (chartType) {
     /**
@@ -72,6 +71,8 @@ export default computedEchartsOption = (chartType, height, option = option, data
       option.series = lineSeries;
       break;
     }
+
+
   }
 
   return {
