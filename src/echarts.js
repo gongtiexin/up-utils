@@ -5,82 +5,92 @@
  * option: 图表配置
  * data: 数据源
  * */
-import lodashGroupBy from "lodash/groupBy";
-import lodashUniq from "lodash/uniq";
+import lodashGroupBy from 'lodash/groupBy';
+import lodashUniq from 'lodash/uniq';
 
-const option = {
+const defultOption = {
   id: null,
   type: null,
   legend: {
-    data: []
+    data: [],
   },
   xAxis: {},
   yAxis: {},
-  series: []
+  series: [],
 };
 
-export default function computedEchartsOption(chartType, height, option = option, data, x, y, value) {
-
+export default function computedEchartsOption(
+  chartType,
+  height,
+  option = defultOption,
+  data,
+  x,
+  y,
+  value,
+) {
+  const result = option;
   switch (chartType) {
     /**
      * 计算柱状图数据
      * */
-    case "BAR": {
+    case 'BAR': {
       const barXAxis = [];
       const barLegend = [];
       const barSeries = [];
       const barGroup = lodashGroupBy(data, y);
-      for (const one of Object.keys(barGroup)) {
+      Object.keys(barGroup).forEach((one) => {
         const group = [];
-        barGroup[one].map(item => {
+        barGroup[one].forEach((item) => {
           group.push(item[value]);
           barXAxis.push(item[x]);
         });
         barLegend.push(one);
-        barSeries.push({name: one, data: group, type: 'bar'})
-      }
+        barSeries.push({ name: one, data: group, type: 'bar' });
+      });
       if (option.legend) {
-        option.legend.data = lodashUniq(barLegend);
+        result.legend.data = lodashUniq(barLegend);
       }
-      option.xAxis.data = lodashUniq(barXAxis);
-      option.series = barSeries;
+      result.xAxis.data = lodashUniq(barXAxis);
+      result.series = barSeries;
       break;
     }
 
     /**
      * 计算折线图数据
      * */
-    case "LINE": {
+    case 'LINE': {
       const lineLegend = [];
       const lineXAxis = [];
       const lineSeries = [];
       const lineGroup = lodashGroupBy(data, y);
-      for (const one of Object.keys(lineGroup)) {
+      Object.keys(lineGroup).forEach((one) => {
         const group = [];
-        lineGroup[one].map(item => {
+        lineGroup[one].forEach((item) => {
           group.push(item[value]);
           lineXAxis.push(item[x]);
         });
         lineLegend.push(one);
-        lineSeries.push({name: one, data: group, type: 'line', showSymbol: false, hoverAnimation: false,});
-      }
+        lineSeries.push({
+          name: one, data: group, type: 'line', showSymbol: false, hoverAnimation: false,
+        });
+      });
       if (option.legend) {
-        option.legend.data = lodashUniq(lineLegend);
+        result.legend.data = lodashUniq(lineLegend);
       }
-      option.xAxis.data = lodashUniq(lineXAxis);
-      option.series = lineSeries;
+      result.xAxis.data = lodashUniq(lineXAxis);
+      result.series = lineSeries;
       break;
     }
-
-
+    default:
+      break;
   }
 
   return {
     style: {
       width: '100%',
-      textAlign: "center",
-      height: height,
+      textAlign: 'center',
+      height,
     },
-    option: option
-  }
-};
+    option,
+  };
+}

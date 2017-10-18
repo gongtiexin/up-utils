@@ -6,9 +6,9 @@ const utils = {
   by(name) {
     return function (o, p) {
       let a, b;
-      if (typeof o === "object" && typeof p === "object" && o && p) {
-        a = parseInt(o[name] * 1000);
-        b = parseInt(p[name] * 1000);
+      if (typeof o === 'object' && typeof p === 'object' && o && p) {
+        a = parseInt(o[name] * 1000, 10);
+        b = parseInt(p[name] * 1000, 10);
         if (a === b) {
           return 0;
         }
@@ -17,10 +17,8 @@ const utils = {
         }
         return typeof a < typeof b ? 1 : -1;
       }
-      else {
-        throw ("error");
-      }
-    }
+      throw new Error('error');
+    };
   },
 
   /**
@@ -49,11 +47,11 @@ const utils = {
    * 方法只既检测对象本身的属性，不检测从原型继承的属性。
    * */
   isOwnEmpty(obj) {
-    for (const name in obj) {
-      if (obj.hasOwnProperty(name)) {
+    Object.keys(obj).forEach((key) => {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
         return false;
       }
-    }
+    });
     return true;
   },
 
@@ -61,42 +59,62 @@ const utils = {
    * 清除对象中值为空的属性包括("",null,undefined)
    * */
   filterNull(obj) {
-    let _newPar = {};
-    for (let key in obj) {
+    const newPar = {};
+    Object.keys(obj).forEach((key) => {
       if ((obj[key] === 0 || obj[key]) && obj[key].toString().replace(/(^\s*)|(\s*$)/g, '') !== '') {
-        _newPar[key] = obj[key];
+        newPar[key] = obj[key];
       }
-    }
-    return _newPar;
+    });
+    return newPar;
   },
 
   /**
    * 评分
    * */
   rate(rate) {
-    return "★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate)
-
+    return '★★★★★☆☆☆☆☆'.slice(5 - rate, 10 - rate);
   },
 
   /**
    * 随机13位字符串
    * */
   randomString13() {
-    return Math.random().toString(16).substring(2) // 13位
+    return Math.random().toString(16).substring(2); // 13位
   },
 
   /**
    * 随机11位字符串
    * */
   randomString11() {
-    return Math.random().toString(36).substring(2) // 11位
+    return Math.random().toString(36).substring(2); // 11位
   },
 
   /**
    * 金钱格式化
    * */
   menoyFormat(menoy) {
-    return menoy.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    return menoy.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  },
+
+  /**
+   * 全屏
+   * */
+  // 判断各种浏览器，找到正确的方法
+  launchFullScreen(element) {
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    }
+  },
+  fullScreen(element = 'all') {
+    if (element === 'all') {
+      this.launchFullScreen(document.documentElement);
+    } else this.launchFullScreen(document.getElementById(element));
   },
 };
 
