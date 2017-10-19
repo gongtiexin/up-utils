@@ -29,9 +29,6 @@ export default function request(config, success, error, notification = null) {
     .then((response) => {
       const { data } = response;
       if (data.errCode && data.errCode !== 0) {
-        if (data.errCode >= 401000 && data.errCode <= 401999) {
-          return;
-        }
         const newError = new Error();
         newError.errCode = data.errCode;
         newError.errMsg = data.errMsg;
@@ -41,7 +38,7 @@ export default function request(config, success, error, notification = null) {
       if (notification !== null && success && success.message) {
         notification.success({ message: success.message });
       }
-      Promise.resolve(response);
+      return response;
     })
     .catch((e) => {
       const newConfig = {};
