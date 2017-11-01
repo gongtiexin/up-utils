@@ -4,8 +4,8 @@
  * data: 数据源
  * x: x坐标的指标
  * y: y坐标的指标
- * value:　展示的值
- * seriesTemplete:　series模板
+ * value: 展示的值
+ * seriesTemplete: series模板
  * */
 import lodashGroupBy from 'lodash/groupBy';
 import lodashUniq from 'lodash/uniq';
@@ -20,7 +20,14 @@ const defultOption = {
 
 const defultSeriesTemplete = { name: null, data: null };
 
-export default function computedEchartsOption(option = defultOption, data, x, y, value, seriesTemplete = defultSeriesTemplete) {
+export default function computedEchartsOption(
+  option = defultOption,
+  data,
+  x,
+  y,
+  value,
+  seriesTemplete = defultSeriesTemplete,
+) {
   const result = option;
   const xAxis = [];
   const legend = [];

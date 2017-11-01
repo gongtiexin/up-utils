@@ -4,7 +4,7 @@ const utils = {
    * sortBy根据数值大小排序,从大到小
    * */
   by(name) {
-    return function (o, p) {
+    return (o, p) => {
       let a, b;
       if (typeof o === 'object' && typeof p === 'object' && o && p) {
         a = parseInt(o[name] * 1000, 10);
