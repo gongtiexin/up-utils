@@ -2,6 +2,10 @@
  * 计算echarts的option
  * option: 图表配置
  * data: 数据源
+ * x: x坐标的指标
+ * y: y坐标的指标
+ * value:　展示的值
+ * seriesTemplete:　series模板
  * */
 import lodashGroupBy from 'lodash/groupBy';
 import lodashUniq from 'lodash/uniq';
