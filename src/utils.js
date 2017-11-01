@@ -116,6 +116,17 @@ const utils = {
       this.launchFullScreen(document.documentElement);
     } else this.launchFullScreen(document.getElementById(element));
   },
+
+  /**
+   * 根据key去取obj里面的value
+   * 例如: this.delve({ a: { b: { c: 1 } } }, 'a.b.c') 输出　1
+   * */
+  delve(obj, key) {
+    key.split('.').map((p) => {
+      obj = obj && obj[p];
+      return obj;
+    }).pop();
+  }
 };
 
 
