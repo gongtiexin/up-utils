@@ -145,6 +145,15 @@ const utils = {
     }
     return '';
   },
+
+  /**
+   * 设置cookie
+   * */
+  setCookie(cookieName, value, expireHours) {
+    const exdate = new Date();
+    exdate.setHours(exdate.getHours() + expireHours);
+    document.cookie = cookieName + "=" + escape(value) + ((expireHours == null) ? "" : ";expires=" + exdate.toGMTString());
+  }
 };
 
 export default utils;
