@@ -153,7 +153,14 @@ const utils = {
     const exdate = new Date();
     exdate.setHours(exdate.getHours() + expireHours);
     document.cookie = cookieName + "=" + escape(value) + ((expireHours == null) ? "" : ";expires=" + exdate.toGMTString());
-  }
+  },
+
+  /**
+   * 高亮关键词
+   * */
+  highlights(str, keyword) {
+    return str.replace(new RegExp(keyword, 'gmi'), `<em>${keyword}</em>`);
+  },
 };
 
 export default utils;
