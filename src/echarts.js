@@ -20,15 +20,13 @@ const defultOption = {
 
 const defultSeriesTemplete = { name: null, data: null };
 
-export default function computedEchartsOption(
-  option = defultOption,
-  data,
-  x,
-  y,
-  value,
-  seriesTemplete = defultSeriesTemplete,
-) {
-  const result = option;
+export default function computedEchartsOption(option,
+                                              data,
+                                              x,
+                                              y,
+                                              value,
+                                              seriesTemplete = defultSeriesTemplete,) {
+  const result = Object.assign({}, defultOption, option);
   const xAxis = [];
   const legend = [];
   const series = [];
@@ -40,13 +38,8 @@ export default function computedEchartsOption(
       xAxis.push(item[x]);
     });
     legend.push(one);
-    Object.assign(seriesTemplete, { name: one, data: seriesData });
-    series.push(seriesTemplete);
+    series.push(Object.assign({}, seriesTemplete, { name: one, data: seriesData }));
   });
-  if (option.legend) {
-    result.legend.data = lodashUniq(legend);
-  }
-  result.xAxis.data = lodashUniq(xAxis);
-  result.series = series;
+  Object.assign(result, { legend: { data: lodashUniq(legend) } }, { xAxis: { data: lodashUniq(xAxis) } }, { series: series });
   return result;
 }
