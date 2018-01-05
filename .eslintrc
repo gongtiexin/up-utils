@@ -1,16 +1,22 @@
 {
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true
   },
-  "extends": "eslint-config-airbnb",
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
   "parser": "babel-eslint",
   "plugins": [
+    "prettier",
     "flowtype",
     "import",
     "jsx-a11y",
     "react"
   ],
   "rules": {
+    "prettier/prettier": "error",
     "react/jsx-filename-extension": [
       0,
       {
@@ -20,7 +26,9 @@
         ]
       }
     ],
-    "react/prop-types": 0,
+    "react/prop-types": 1,
+    "react/require-default-props": 0,
+    "react/forbid-prop-types": 0,
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
@@ -29,20 +37,8 @@
         ],
         "specialLink": [
           "to"
-        ],
-        "aspects": [
-          "noHref",
-          "invalidHref",
-          "preferButton"
         ]
       }
-    ],
-    "max-len": [
-      "error",
-      100
-    ],
-    "react/jsx-indent": 0,
-    "jsx-a11y/click-events-have-key-events": 1,
-    "object-curly-newline": 0
+    ]
   }
 }

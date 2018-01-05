@@ -1,8 +1,4 @@
-import 'babel-polyfill';
-import utils from './utils';
-import computedEchartsOption from './echarts';
+import utils from "./utils";
+import computedEchartsOption, { computedEchartsOption$ } from "./echarts";
 
-export {
-  utils,
-  computedEchartsOption,
-};
+export { utils, computedEchartsOption, computedEchartsOption$ };
