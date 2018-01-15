@@ -19,14 +19,7 @@ const defultOption = {
   series: []
 };
 
-export function computedEchartsOption(
-  option,
-  data,
-  x,
-  y,
-  value,
-  seriesTempletes
-) {
+const computedEchartsOption = (option, data, x, y, value, seriesTempletes) => {
   const result = Object.assign({}, defultOption, option);
   const xAxis = [];
   const legend = [];
@@ -53,4 +46,6 @@ export function computedEchartsOption(
     { xAxis: { data: lodashUniq(xAxis) } },
     { series }
   );
-}
+};
+
+export default computedEchartsOption;
