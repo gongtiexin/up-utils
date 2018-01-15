@@ -1,3 +1,3 @@
-# hl-utils ![hl-utils 1.0.2](https://img.shields.io/badge/hl--utils-1.0.2-brightgreen.svg)
+# up-utils ![up-utils 2.0.0](https://img.shields.io/badge/up--utils-2.0.0-brightgreen.svg)
 
 > 公共方法库
