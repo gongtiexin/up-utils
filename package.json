@@ -1,8 +1,8 @@
 {
-  "name": "hl-utils",
-  "version": "1.9.13",
+  "name": "up-utils",
+  "version": "2.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "eslint": "eslint \"src/**\" --fix",
     "compile": "rimraf ./lib && babel src/ -d lib/",

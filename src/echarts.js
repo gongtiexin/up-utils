@@ -19,40 +19,7 @@ const defultOption = {
   series: []
 };
 
-export default function computedEchartsOption(
-  option,
-  data,
-  x,
-  y,
-  value,
-  seriesTemplete
-) {
-  const result = Object.assign({}, defultOption, option);
-  const xAxis = [];
-  const legend = [];
-  const series = [];
-  const lodashGroup = lodashGroupBy(data, y);
-  Object.keys(lodashGroup).forEach(one => {
-    const seriesData = [];
-    lodashGroup[one].forEach(item => {
-      seriesData.push(item[value]);
-      xAxis.push(item[x]);
-    });
-    legend.push(one);
-    series.push(
-      Object.assign({}, seriesTemplete, { name: one, data: seriesData })
-    );
-  });
-  return lodashDefaultsDeep(
-    {},
-    result,
-    { legend: { data: lodashUniq(legend) } },
-    { xAxis: { data: lodashUniq(xAxis) } },
-    { series }
-  );
-}
-
-export function computedEchartsOption$(
+export function computedEchartsOption(
   option,
   data,
   x,
