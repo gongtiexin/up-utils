@@ -15,27 +15,41 @@ const defultOption = {
   legend: {
     data: []
   },
-  xAxis: {},
   series: []
 };
 
 const computedEchartsOption = (option, data, x, y, value, seriesTempletes) => {
-  const result = Object.assign({}, defultOption, option);
+  const isOnlyPie = Object.values(seriesTempletes)[0].type === "pie";
+  const result = Object.assign(
+    {},
+    defultOption,
+    isOnlyPie ? undefined : { xAxis: {} },
+    option
+  );
   const xAxis = [];
   const legend = [];
   const series = [];
   const lodashGroupBySeriesType = lodashGroupBy(data, "seriesType");
   Object.entries(seriesTempletes).forEach(([key, seriesTemplete]) => {
+    const isPie = seriesTemplete.type === "pie";
     const lodashGroup = lodashGroupBy(lodashGroupBySeriesType[key], y);
     Object.keys(lodashGroup).forEach(one => {
       const seriesData = [];
       lodashGroup[one].forEach(item => {
-        seriesData.push(item[value]);
+        if (isPie) {
+          legend.push(item[x]);
+          seriesData.push({ value: item[value], name: item[x] });
+        } else {
+          legend.push(one);
+          seriesData.push(item[value]);
+        }
         xAxis.push(item[x]);
       });
-      legend.push(one);
       series.push(
-        Object.assign({}, seriesTemplete, { name: one, data: seriesData })
+        Object.assign({}, seriesTemplete, {
+          name: isPie ? seriesTemplete.name || "饼图" : one,
+          data: seriesData
+        })
       );
     });
   });
@@ -43,7 +57,7 @@ const computedEchartsOption = (option, data, x, y, value, seriesTempletes) => {
     {},
     result,
     { legend: { data: lodashUniq(legend) } },
-    { xAxis: { data: lodashUniq(xAxis) } },
+    isOnlyPie ? undefined : { xAxis: { data: lodashUniq(xAxis) } },
     { series }
   );
 };
