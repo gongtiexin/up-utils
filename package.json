@@ -1,6 +1,6 @@
 {
   "name": "up-utils",
-  "version": "2.1.0",
+  "version": "2.1.4",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -29,6 +29,7 @@
     "babel-eslint": "^8.0.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-2": "^6.24.1",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^16.0.0",
     "eslint-config-prettier": "^2.9.0",

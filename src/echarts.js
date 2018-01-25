@@ -20,8 +20,8 @@ const defultOption = {
 };
 
 /* 补零函数 */
-const fillIn = ({ data, x, y, seriesType }) => {
-  if (data && data.length > 0) {
+const fillIn = ({ data, x, y, value, seriesType, isFillIn }) => {
+  if (isFillIn && data && data.length > 0) {
     const copy = [];
     const xList = Object.keys(lodashGroupBy(data, x));
     const yList = Object.keys(lodashGroupBy(data, y));
@@ -29,17 +29,15 @@ const fillIn = ({ data, x, y, seriesType }) => {
       yList.forEach(yItem => {
         const one = data.find(item => xItem === item[x] && yItem === item[y]);
         if (!one) {
-          copy.push(
-            Object.assign(seriesType, {
-              x: xItem,
-              y: yItem,
-              value: 0,
-              seriesType,
-              sort: idx
-            })
-          );
+          copy.push({
+            x: xItem,
+            y: yItem,
+            [value]: 0,
+            seriesType,
+            sort: idx
+          });
         } else {
-          copy.push(Object.assign({}, one, { sort: idx }));
+          copy.push({ ...one, sort: idx });
         }
       });
     });
@@ -55,6 +53,7 @@ const computedEchartsOption = ({
   y,
   value,
   seriesTempletes,
+  seriesSpecialConfig,
   isFillIn = false
 }) => {
   /* 如果只有饼图不能有x轴 */
@@ -73,18 +72,15 @@ const computedEchartsOption = ({
   Object.entries(seriesTempletes).forEach(([key, seriesTemplete]) => {
     const isPie = seriesTemplete.type === "pie";
     /* 补零 */
-    let group = [];
-    if (isFillIn) {
-      group = fillIn({
-        data: lodashGroupBySeriesType[key],
-        x,
-        y,
-        seriesType: seriesTemplete.type
-      });
-    } else {
-      group = data;
-    }
-    const lodashGroupByY = lodashGroupBy(group, y);
+    const lodashGroupBySeriesTypeData = fillIn({
+      data: lodashGroupBySeriesType[key],
+      x,
+      y,
+      value,
+      seriesType: seriesTemplete.type,
+      isFillIn
+    });
+    const lodashGroupByY = lodashGroupBy(lodashGroupBySeriesTypeData, y);
     Object.keys(lodashGroupByY).forEach(one => {
       const seriesData = [];
       lodashGroupByY[one].forEach(item => {
@@ -99,10 +95,15 @@ const computedEchartsOption = ({
         xAxis.push(item[x]);
       });
       series.push(
-        Object.assign({}, seriesTemplete, {
-          name: isPie ? seriesTemplete.name || "饼图" : one,
-          data: seriesData
-        })
+        Object.assign(
+          {},
+          seriesTemplete,
+          {
+            name: isPie ? seriesTemplete.name || "饼图" : one,
+            data: seriesData
+          },
+          seriesSpecialConfig ? seriesSpecialConfig[one] : undefined
+        )
       );
     });
   });
