@@ -16,7 +16,17 @@ const defultOption = {
   series: []
 };
 
-const computedEchartsOptionForV4 = ({
+/**
+ * 计算echarts渲染所需option
+ * @param  option: 基础配置项
+ * @param  data: 数据源
+ * @param  row: 横坐标上的属性(对于data里面的key)
+ * @param  column: 纵坐标上的属性(对于data里面的key)
+ * @param  value: 图上的属性(对于data里面的key)
+ * @param  seriesTempletes: 每个series的配置
+ * @return Object
+ * */
+const computedEchartsOption = ({
   option,
   data,
   row = "x",
@@ -76,4 +86,4 @@ const computedEchartsOptionForV4 = ({
   );
 };
 
-export default computedEchartsOptionForV4;
+export default computedEchartsOption;

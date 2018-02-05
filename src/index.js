@@ -1,5 +1,15 @@
+import upNumber from "./number";
+import upObject from "./object";
+import upStorage from "./storage";
+import upString from "./string";
 import utils from "./utils";
-import computedEchartsOption from "./echarts";
-import computedEchartsOptionForV4 from "./echarts-v4";
+import computedEchartsOption from "./echarts-v4";
 
-export { utils, computedEchartsOption, computedEchartsOptionForV4 };
+export {
+  upString,
+  upNumber,
+  upObject,
+  upStorage,
+  utils,
+  computedEchartsOption
+};
