@@ -9,12 +9,13 @@ const defultOption = {
 
 /**
  * 计算echarts渲染所需option
- * @param  option: 基础配置项
- * @param  data: 数据源
- * @param  row: 横坐标上的属性(对于data里面的key)
- * @param  column: 纵坐标上的属性(对于data里面的key)
- * @param  value: 图上的属性(对于data里面的key)
- * @param  seriesTemplates: 每个series的配置
+ * @param option: 基础配置项
+ * @param data: 数据源
+ * @param row: 横坐标上的属性(对于data里面的key)
+ * @param column: 纵坐标上的属性(对于data里面的key)
+ * @param value: 图上的属性(对于data里面的key)
+ * @param seriesType: 对应seriesTemplates的key
+ * @param seriesTemplates: 每个series的配置
  * @return Object
  * */
 const computedEchartsOption = ({
@@ -23,6 +24,7 @@ const computedEchartsOption = ({
   row = "x",
   column = "y",
   value = "value",
+  seriesType = "seriesType",
   seriesTemplates,
 }) => {
   const result = Object.assign({}, defultOption, option);
@@ -57,9 +59,9 @@ const computedEchartsOption = ({
 
         /* series */
         if (rowIdx === 0) {
-          if (values && values.length > 0 && values[0].seriesType) {
+          if (values && values.length > 0 && values[0][seriesType]) {
             series.push(
-              Object.assign({}, seriesTemplates[values[0].seriesType])
+              Object.assign({}, seriesTemplates[values[0][seriesType]])
             );
           } else {
             series.push({});
