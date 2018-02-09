@@ -14,9 +14,9 @@ import utils from "./utils";
 
 const defultOption = {
   legend: {
-    data: []
+    data: [],
   },
-  series: []
+  series: [],
 };
 
 /* 补零函数 */
@@ -34,7 +34,7 @@ const fillIn = ({ data, x, y, value, seriesType, isFillIn }) => {
             y: yItem,
             [value]: 0,
             seriesType,
-            sort: idx
+            sort: idx,
           });
         } else {
           copy.push({ ...one, sort: idx });
@@ -52,12 +52,12 @@ const computedEchartsOption = ({
   x,
   y,
   value,
-  seriesTempletes,
+  seriesTemplates,
   seriesSpecialConfig,
-  isFillIn = false
+  isFillIn = false,
 }) => {
   /* 如果只有饼图不能有x轴 */
-  const isOnlyPie = Object.values(seriesTempletes)[0].type === "pie";
+  const isOnlyPie = Object.values(seriesTemplates)[0].type === "pie";
   const result = Object.assign(
     {},
     defultOption,
@@ -69,7 +69,7 @@ const computedEchartsOption = ({
   const legend = [];
   const series = [];
   const lodashGroupBySeriesType = lodashGroupBy(data, "seriesType");
-  Object.entries(seriesTempletes).forEach(([key, seriesTemplete]) => {
+  Object.entries(seriesTemplates).forEach(([key, seriesTemplete]) => {
     const isPie = seriesTemplete.type === "pie";
     /* 补零 */
     const lodashGroupBySeriesTypeData = fillIn({
@@ -78,7 +78,7 @@ const computedEchartsOption = ({
       y,
       value,
       seriesType: seriesTemplete.type,
-      isFillIn
+      isFillIn,
     });
     const lodashGroupByY = lodashGroupBy(lodashGroupBySeriesTypeData, y);
     Object.keys(lodashGroupByY).forEach(one => {
@@ -100,7 +100,7 @@ const computedEchartsOption = ({
           seriesTemplete,
           {
             name: isPie ? seriesTemplete.name || "饼图" : one,
-            data: seriesData
+            data: seriesData,
           },
           seriesSpecialConfig ? seriesSpecialConfig[one] : undefined
         )

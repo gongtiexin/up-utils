@@ -40,7 +40,7 @@ const upObject = {
       }
     });
     return newPar;
-  }
+  },
 };
 
 export default upObject;

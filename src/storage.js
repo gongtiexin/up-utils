@@ -99,7 +99,7 @@ const upStorage = {
   /**
    * 移除所有sessionStorage
    * */
-  clearSession: () => window.sessionStorage.clear()
+  clearSession: () => window.sessionStorage.clear(),
 };
 
 export default upStorage;

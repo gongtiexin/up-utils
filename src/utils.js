@@ -54,7 +54,7 @@ const utils = {
    * 高亮关键词
    * */
   highlights: (str, keyword) =>
-    str.replace(new RegExp(keyword, "gmi"), `<em>${keyword}</em>`)
+    str.replace(new RegExp(keyword, "gmi"), `<em>${keyword}</em>`),
 };
 
 export default utils;

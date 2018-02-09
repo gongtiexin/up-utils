@@ -20,7 +20,7 @@ const upNumber = {
       "七",
       "八",
       "九",
-      "十"
+      "十",
     ];
     const BB = ["", "十", "百", "仟", "萬", "億", "点", ""];
     const a = `${num}`.replace(/(^0*)/g, "").split(".");
@@ -237,7 +237,7 @@ const upNumber = {
       s += "0";
     }
     return s;
-  }
+  },
 };
 
 export default upNumber;

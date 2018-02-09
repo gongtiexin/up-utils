@@ -105,7 +105,7 @@ const upString = {
       rs += chars.charAt(Math.floor(Math.random() * maxPos));
     }
     return rs;
-  }
+  },
 };
 
 export default upString;

@@ -1,19 +1,10 @@
-/**
- * 计算echarts的option
- * option: 图表配置
- * data: 数据源
- * x: x坐标的指标
- * y: y坐标的指标
- * value: 展示的值
- * seriesTemplete: series模板
- * */
 import lodashGroupBy from "lodash/groupBy";
 
 const defultOption = {
   dataset: {
-    source: []
+    source: [],
   },
-  series: []
+  series: [],
 };
 
 /**
@@ -23,7 +14,7 @@ const defultOption = {
  * @param  row: 横坐标上的属性(对于data里面的key)
  * @param  column: 纵坐标上的属性(对于data里面的key)
  * @param  value: 图上的属性(对于data里面的key)
- * @param  seriesTempletes: 每个series的配置
+ * @param  seriesTemplates: 每个series的配置
  * @return Object
  * */
 const computedEchartsOption = ({
@@ -32,7 +23,7 @@ const computedEchartsOption = ({
   row = "x",
   column = "y",
   value = "value",
-  seriesTempletes
+  seriesTemplates,
 }) => {
   const result = Object.assign({}, defultOption, option);
 
@@ -68,7 +59,7 @@ const computedEchartsOption = ({
         if (rowIdx === 0) {
           if (values && values.length > 0 && values[0].seriesType) {
             series.push(
-              Object.assign({}, seriesTempletes[values[0].seriesType])
+              Object.assign({}, seriesTemplates[values[0].seriesType])
             );
           } else {
             series.push({});

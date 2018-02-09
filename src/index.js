@@ -11,5 +11,5 @@ export {
   upObject,
   upStorage,
   utils,
-  computedEchartsOption
+  computedEchartsOption,
 };
