@@ -1,9 +1,20 @@
 {
   "presets": [
-    "env",
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": ["last 2 versions", "ie >= 11"]
+        },
+        "forceAllTransforms": true,
+        "useBuiltIns": true
+      }
+    ],
     "stage-2"
   ],
   "plugins": [
-    "transform-runtime"
+    "transform-runtime",
+    "lodash"
   ]
 }
