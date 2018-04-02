@@ -1,8 +1,8 @@
-import upNumber from "./number";
-import upObject from "./object";
-import upStorage from "./storage";
-import upString from "./string";
-import utils from "./utils";
+import * as upNumber from "./number";
+import * as upObject from "./object";
+import * as upStorage from "./storage";
+import * as upString from "./string";
+import * as utils from "./utils";
 import computedEchartsOption from "./echarts-v4";
 
 export {

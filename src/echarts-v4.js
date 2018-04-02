@@ -16,6 +16,7 @@ const defultOption = {
  * @param value: 图上的属性(对于data里面的key)
  * @param seriesType: 对应seriesTemplates的key
  * @param seriesTemplates: 每个series的配置
+ * @param fillText: 补位数据形式
  * @return Object
  * */
 const computedEchartsOption = ({
@@ -26,6 +27,7 @@ const computedEchartsOption = ({
   value = "value",
   seriesType = "seriesType",
   seriesTemplates,
+  fillText = 0,
 }) => {
   const result = Object.assign({}, defultOption, option);
 
@@ -40,7 +42,7 @@ const computedEchartsOption = ({
   /* init */
   const sources = Array(Object.keys(lodashGroupByRow).length + 1)
     .fill(null)
-    .map(_ => Array(Object.keys(lodashGroupByColumn).length + 1).fill(0));
+    .map(_ => Array(Object.keys(lodashGroupByColumn).length + 1).fill(fillText));
 
   /* dataset source first row */
   sources[0] = ["product", ...Object.keys(lodashGroupByColumn)];

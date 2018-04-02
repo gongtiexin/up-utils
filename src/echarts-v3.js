@@ -65,7 +65,6 @@ const computedEchartsOption = ({
     option
   );
   /* 计算option */
-  const xAxis = [];
   const legend = [];
   const series = [];
   const lodashGroupBySeriesType = lodashGroupBy(data, "seriesType");
@@ -92,7 +91,6 @@ const computedEchartsOption = ({
           legend.push(one);
           seriesData.push(item[value]);
         }
-        xAxis.push(item[x]);
       });
       series.push(
         Object.assign(
@@ -111,7 +109,9 @@ const computedEchartsOption = ({
     {},
     result,
     { legend: { data: lodashUniq(legend) } },
-    isOnlyPie ? undefined : { xAxis: { data: lodashUniq(xAxis) } },
+    isOnlyPie
+      ? undefined
+      : { xAxis: { data: Object.keys(lodashGroupBy(data, x)) } },
     { series }
   );
 };
