@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/gongtiexin/up-utils/issues"
   },
-  "homepage": "https://gitlab.hualongdata.com/frontend/hl-utils/blob/develop/readme.md",
+  "homepage": "https://github.com/gongtiexin/up-utils/blob/master/readme.md",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
