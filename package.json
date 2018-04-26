@@ -5,13 +5,12 @@
   "main": "lib/index.js",
   "scripts": {
     "eslint": "eslint \"src/**\" --fix",
-    "webpack": "webpack --progress --config webpack.config.js",
-    "compile": "rimraf ./lib && npm run webpack",
+    "compile": "rimraf ./lib && babel src/ -d lib/",
     "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.hualongdata.com/frontend/hl-utils.git"
+    "url": "git+https://github.com/gongtiexin/up-utils.git"
   },
   "keywords": [
     "navi"
@@ -22,14 +21,12 @@
   "author": "gongtiexin",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.hualongdata.com/frontend/hl-utils/issues"
+    "url": "https://github.com/gongtiexin/up-utils/issues"
   },
   "homepage": "https://gitlab.hualongdata.com/frontend/hl-utils/blob/develop/readme.md",
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-lodash": "^3.3.2",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-2": "^6.24.1",
@@ -41,11 +38,8 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-prettier": "^2.4.0",
     "eslint-plugin-react": "^7.4.0",
-    "lodash-webpack-plugin": "^0.11.4",
     "prettier": "^1.9.2",
-    "rimraf": "^2.6.2",
-    "webpack": "^3.11.0",
-    "webpack-bundle-analyzer": "^2.10.0"
+    "rimraf": "^2.6.2"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
