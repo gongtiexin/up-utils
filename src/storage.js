@@ -32,7 +32,7 @@ const setCookie = (cookieName, value, expireHours) => {
 /**
  * 删除cookie
  * */
-const removeCookie = name => this.setCookie(name, 1, -1);
+const removeCookie = name => setCookie(name, 1, -1);
 
 /* -----------------localStorage---------------------*/
 /**

@@ -106,4 +106,54 @@ const randomString = (len = 32) => {
   return rs;
 };
 
-export { trim, changeCase, checkPwd, filterTag, randomString };
+/**
+ * 将时间转换为特定格式
+ * */
+const formatDate = date => {
+  // 获取传入时间时间戳
+  const timeStr = +new Date(date);
+  // 获取当前时间戳
+  const now = +new Date();
+  // 求与当前的时间差
+  let se = now - timeStr;
+  const DATE_LEVEL = {
+    month: 2592000000,
+    day: 86400000,
+    hour: 3600000,
+    minter: 60000,
+  };
+  let text = "";
+  // 去年
+  if (
+    new Date(timeStr).getFullYear() !== new Date().getFullYear() &&
+    se > DATE_LEVEL.month
+  ) {
+    text = `${new Date(timeStr).getFullYear()}年${new Date(timeStr).getMonth() +
+      1}月${new Date(timeStr).getDate()}日`;
+  }
+  // 一个月以上
+  else if (se > DATE_LEVEL.month) {
+    text = `${new Date(timeStr).getMonth() + 1}月${new Date(
+      timeStr
+    ).getDate()}日`;
+  }
+  // 一天以上
+  else if (se > DATE_LEVEL.day) {
+    text = `${Math.floor(se / DATE_LEVEL.day)}天前`;
+  }
+  // 一个小时以上
+  else if (se > DATE_LEVEL.hour) {
+    text = `${Math.floor(se / DATE_LEVEL.hour)}小时前`;
+  }
+  // 一个小时以内
+  else {
+    // 如果小于1分钟，就显示1分钟前
+    if (se < DATE_LEVEL.minter) {
+      se = DATE_LEVEL.minter;
+    }
+    text = `${Math.floor(se / DATE_LEVEL.minter)}分钟前`;
+  }
+  return text;
+};
+
+export { trim, changeCase, checkPwd, filterTag, randomString, formatDate };
