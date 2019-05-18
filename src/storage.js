@@ -39,9 +39,8 @@ const removeCookie = name => setCookie(name, 1, -1);
  * 设置localStorage
  * */
 const setLocal = (key, val) => {
-  const setting = arguments[0];
-  if (Object.prototype.toString.call(setting).slice(8, -1) === "Object") {
-    Object.entries(setting).forEach(item =>
+  if (Object.prototype.toString.call(val).slice(8, -1) === "Object") {
+    Object.entries(val).forEach(item =>
       window.sessionStorage.setItem(item[0], JSON.stringify(item[1]))
     );
   } else {
@@ -72,9 +71,8 @@ const clearLocal = () => window.localStorage.clear();
  * 设置sessionStorage
  * */
 const setSession = (key, val) => {
-  const setting = arguments[0];
-  if (Object.prototype.toString.call(setting).slice(8, -1) === "Object") {
-    Object.entries(setting).forEach(item =>
+  if (Object.prototype.toString.call(val).slice(8, -1) === "Object") {
+    Object.entries(val).forEach(item =>
       window.sessionStorage.setItem(item[0], JSON.stringify(item[1]))
     );
   } else {
