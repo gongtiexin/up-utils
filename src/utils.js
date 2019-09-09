@@ -1,33 +1,7 @@
 /**
- * sortBy根据数值大小排序,从大到小
- * */
-const by = name => (o, p) => {
-  let a;
-  let b;
-  if (typeof o === "object" && typeof p === "object" && o && p) {
-    a = parseInt(o[name] * 1000, 10);
-    b = parseInt(p[name] * 1000, 10);
-    if (a === b) {
-      return 0;
-    }
-    if (typeof a === typeof b) {
-      return a < b ? 1 : -1;
-    }
-    return typeof a < typeof b ? 1 : -1;
-  }
-  throw new Error("error");
-};
-
-/**
  * 评分
  * */
-const rate = rate => "★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate);
-
-/**
- * 金钱格式化
- * */
-const menoyFormat = menoy =>
-  menoy.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+const rate = score => '★★★★★☆☆☆☆☆'.slice(5 - score, 10 - score);
 
 /**
  * 全屏
@@ -44,8 +18,8 @@ const launchFullScreen = element => {
     element.msRequestFullscreen();
   }
 };
-const fullScreen = (element = "all") => {
-  if (element === "all") {
+const fullScreen = (element = 'all') => {
+  if (element === 'all') {
     launchFullScreen(document.documentElement);
   } else launchFullScreen(document.getElementById(element));
 };
@@ -53,7 +27,6 @@ const fullScreen = (element = "all") => {
 /**
  * 高亮关键词
  * */
-const highlights = (str, keyword) =>
-  str.replace(new RegExp(keyword, "gmi"), `<em>${keyword}</em>`);
+const highlights = (str, keyword) => str.replace(new RegExp(keyword, 'gmi'), `<em>${keyword}</em>`);
 
-export { by, rate, menoyFormat, fullScreen, highlights };
+export { rate, fullScreen, highlights };

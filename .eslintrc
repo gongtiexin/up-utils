@@ -3,16 +3,22 @@
     "browser": true,
     "node": true
   },
-  "extends": [
-    "airbnb",
-    "plugin:prettier/recommended",
-    "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings"
-  ],
+  "extends": ["airbnb", "plugin:prettier/recommended"],
   "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
+  },
   "rules": {
-    "prettier/prettier": ["error", { "trailingComma": "es5" }]
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "all",
+        "printWidth": 100,
+        "proseWrap": "never"
+      }
+    ]
   }
 }

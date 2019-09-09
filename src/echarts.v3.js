@@ -7,10 +7,10 @@
  * value: 展示的值
  * seriesTemplete: series模板
  * */
-import lodashGroupBy from "lodash/groupBy";
-import lodashUniq from "lodash/uniq";
-import lodashDefaultsDeep from "lodash/defaultsDeep";
-import utils from "./utils";
+import lodashGroupBy from 'lodash/groupBy';
+import lodashUniq from 'lodash/uniq';
+import lodashDefaultsDeep from 'lodash/defaultsDeep';
+import utils from './utils';
 
 const defultOption = {
   legend: {
@@ -41,7 +41,7 @@ const fillIn = ({ data, x, y, value, seriesType, isFillIn }) => {
         }
       });
     });
-    return copy.sort(utils.by("sort")).reverse();
+    return copy.sort(utils.by('sort')).reverse();
   }
   return data;
 };
@@ -57,19 +57,14 @@ const computedEchartsOption = ({
   isFillIn = false,
 }) => {
   /* 如果只有饼图不能有x轴 */
-  const isOnlyPie = Object.values(seriesTemplates)[0].type === "pie";
-  const result = Object.assign(
-    {},
-    defultOption,
-    isOnlyPie ? undefined : { xAxis: {} },
-    option
-  );
+  const isOnlyPie = Object.values(seriesTemplates)[0].type === 'pie';
+  const result = Object.assign({}, defultOption, isOnlyPie ? undefined : { xAxis: {} }, option);
   /* 计算option */
   const legend = [];
   const series = [];
-  const lodashGroupBySeriesType = lodashGroupBy(data, "seriesType");
+  const lodashGroupBySeriesType = lodashGroupBy(data, 'seriesType');
   Object.entries(seriesTemplates).forEach(([key, seriesTemplete]) => {
-    const isPie = seriesTemplete.type === "pie";
+    const isPie = seriesTemplete.type === 'pie';
     /* 补零 */
     const lodashGroupBySeriesTypeData = fillIn({
       data: lodashGroupBySeriesType[key],
@@ -97,11 +92,11 @@ const computedEchartsOption = ({
           {},
           seriesTemplete,
           {
-            name: isPie ? seriesTemplete.name || "饼图" : one,
+            name: isPie ? seriesTemplete.name || '饼图' : one,
             data: seriesData,
           },
-          seriesSpecialConfig ? seriesSpecialConfig[one] : undefined
-        )
+          seriesSpecialConfig ? seriesSpecialConfig[one] : undefined,
+        ),
       );
     });
   });
@@ -109,10 +104,8 @@ const computedEchartsOption = ({
     {},
     result,
     { legend: { data: lodashUniq(legend) } },
-    isOnlyPie
-      ? undefined
-      : { xAxis: { data: Object.keys(lodashGroupBy(data, x)) } },
-    { series }
+    isOnlyPie ? undefined : { xAxis: { data: Object.keys(lodashGroupBy(data, x)) } },
+    { series },
   );
 };
 

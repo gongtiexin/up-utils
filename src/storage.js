@@ -8,14 +8,14 @@ const getCookie = cookieName => {
     let cookieStart = document.cookie.indexOf(`${cookieName}=`);
     if (cookieStart !== -1) {
       cookieStart = cookieStart + cookieName.length + 1;
-      let cookieEnd = document.cookie.indexOf(";", cookieStart);
+      let cookieEnd = document.cookie.indexOf(';', cookieStart);
       if (cookieEnd === -1) {
         cookieEnd = document.cookie.length;
       }
       return unescape(document.cookie.substring(cookieStart, cookieEnd));
     }
   }
-  return "";
+  return '';
 };
 
 /**
@@ -25,7 +25,7 @@ const setCookie = (cookieName, value, expireHours) => {
   const exdate = new Date();
   exdate.setHours(exdate.getHours() + expireHours);
   document.cookie = `${cookieName}=${escape(value)}${
-    expireHours == null ? "" : `;expires=${exdate.toGMTString()}`
+    expireHours == null ? '' : `;expires=${exdate.toGMTString()}`
   }`;
 };
 
@@ -39,9 +39,9 @@ const removeCookie = name => setCookie(name, 1, -1);
  * 设置localStorage
  * */
 const setLocal = (key, val) => {
-  if (Object.prototype.toString.call(val).slice(8, -1) === "Object") {
+  if (Object.prototype.toString.call(val).slice(8, -1) === 'Object') {
     Object.entries(val).forEach(item =>
-      window.sessionStorage.setItem(item[0], JSON.stringify(item[1]))
+      window.sessionStorage.setItem(item[0], JSON.stringify(item[1])),
     );
   } else {
     window.localStorage.setItem(key, JSON.stringify(val));
@@ -71,9 +71,9 @@ const clearLocal = () => window.localStorage.clear();
  * 设置sessionStorage
  * */
 const setSession = (key, val) => {
-  if (Object.prototype.toString.call(val).slice(8, -1) === "Object") {
+  if (Object.prototype.toString.call(val).slice(8, -1) === 'Object') {
     Object.entries(val).forEach(item =>
-      window.sessionStorage.setItem(item[0], JSON.stringify(item[1]))
+      window.sessionStorage.setItem(item[0], JSON.stringify(item[1])),
     );
   } else {
     window.sessionStorage.setItem(key, JSON.stringify(val));

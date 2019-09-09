@@ -4,7 +4,7 @@
  * */
 const delve = (obj, key) =>
   key
-    .split(".")
+    .split('.')
     .map(p => {
       obj = obj && obj[p];
       return obj;
@@ -17,10 +17,7 @@ const delve = (obj, key) =>
 const filterNull = obj => {
   const newPar = {};
   Object.keys(obj).forEach(key => {
-    if (
-      (obj[key] === 0 || obj[key]) &&
-      obj[key].toString().replace(/(^\s*)|(\s*$)/g, "") !== ""
-    ) {
+    if ((obj[key] === 0 || obj[key]) && obj[key].toString().replace(/(^\s*)|(\s*$)/g, '') !== '') {
       newPar[key] = obj[key];
     }
   });

@@ -7,13 +7,13 @@
 const trim = (str, type = 1) => {
   switch (type) {
     case 1:
-      return str.replace(/\s+/g, "");
+      return str.replace(/\s+/g, '');
     case 2:
-      return str.replace(/(^\s*)|(\s*$)/g, "");
+      return str.replace(/(^\s*)|(\s*$)/g, '');
     case 3:
-      return str.replace(/(^\s*)/g, "");
+      return str.replace(/(^\s*)/g, '');
     case 4:
-      return str.replace(/(\s*$)/g, "");
+      return str.replace(/(\s*$)/g, '');
     default:
       return str;
   }
@@ -29,25 +29,23 @@ const changeCase = (str, type = 3) => {
     case 1:
       return str.replace(
         /\b\w+\b/g,
-        word =>
-          word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase()
+        word => word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase(),
       );
     case 2:
       return str.replace(
         /\b\w+\b/g,
-        word =>
-          word.substring(0, 1).toLowerCase() + word.substring(1).toUpperCase()
+        word => word.substring(0, 1).toLowerCase() + word.substring(1).toUpperCase(),
       );
     case 3:
       return str
-        .split("")
+        .split('')
         .map(word => {
           if (/[a-z]/.test(word)) {
             return word.toUpperCase();
           }
           return word.toLowerCase();
         })
-        .join("");
+        .join('');
     case 4:
       return str.toUpperCase();
     case 5:
@@ -85,10 +83,10 @@ const checkPwd = str => {
  */
 const filterTag = str => {
   let newStr = str;
-  newStr = newStr.replace(/&/gi, "&amp;");
-  newStr = newStr.replace(/</gi, "&lt;");
-  newStr = newStr.replace(/>/gi, "&gt;");
-  newStr = newStr.replace(" ", "&nbsp;");
+  newStr = newStr.replace(/&/gi, '&amp;');
+  newStr = newStr.replace(/</gi, '&lt;');
+  newStr = newStr.replace(/>/gi, '&gt;');
+  newStr = newStr.replace(' ', '&nbsp;');
   return newStr;
 };
 
@@ -97,9 +95,9 @@ const filterTag = str => {
  * */
 const randomString = (len = 32) => {
   // 默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1
-  const chars = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678";
+  const chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
   const maxPos = chars.length;
-  let rs = "";
+  let rs = '';
   for (let i = 0; i < len; i += 1) {
     rs += chars.charAt(Math.floor(Math.random() * maxPos));
   }
@@ -122,20 +120,16 @@ const formatDate = date => {
     hour: 3600000,
     minter: 60000,
   };
-  let text = "";
+  let text = '';
   // 去年
-  if (
-    new Date(timeStr).getFullYear() !== new Date().getFullYear() &&
-    se > DATE_LEVEL.month
-  ) {
-    text = `${new Date(timeStr).getFullYear()}年${new Date(timeStr).getMonth() +
-      1}月${new Date(timeStr).getDate()}日`;
+  if (new Date(timeStr).getFullYear() !== new Date().getFullYear() && se > DATE_LEVEL.month) {
+    text = `${new Date(timeStr).getFullYear()}年${new Date(timeStr).getMonth() + 1}月${new Date(
+      timeStr,
+    ).getDate()}日`;
   }
   // 一个月以上
   else if (se > DATE_LEVEL.month) {
-    text = `${new Date(timeStr).getMonth() + 1}月${new Date(
-      timeStr
-    ).getDate()}日`;
+    text = `${new Date(timeStr).getMonth() + 1}月${new Date(timeStr).getDate()}日`;
   }
   // 一天以上
   else if (se > DATE_LEVEL.day) {
