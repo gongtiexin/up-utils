@@ -1,76 +1,67 @@
 {
-  "name": "up-utils",
-  "version": "3.7.0",
-  "description": "",
-  "main": "lib/index.js",
-  "scripts": {
-    "prettier": "prettier -c --write '**/*'",
-    "compile": "rimraf ./lib && yarn prettier && babel src/ -d lib/",
-    "prepublish": "yarn compile"
-  },
-  "lint-staged": {
-    "*": [
-      "yarn prettier",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+    "name": "up-utils",
+    "version": "4.0.0",
+    "description": "",
+    "main": "dist/up-utils.production.js",
+    "scripts": {
+        "prettier": "prettier -c --write \"{**/*,*}.{js,json,md}\"",
+        "compile": "webpack --config webpack.config.js",
+        "prepublish": "yarn compile"
+    },
+    "lint-staged": {
+        "*": [
+            "yarn prettier"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gongtiexin/up-utils.git"
+    },
+    "keywords": [
+        "utils"
+    ],
+    "files": [
+        "dist/"
+    ],
+    "author": "gongtiexin",
+    "license": "MIT",
+    "engines": {
+        "npm": ">=6.11.3",
+        "node": ">=12.10.0"
+    },
+    "bugs": {
+        "url": "https://github.com/gongtiexin/up-utils/issues"
+    },
+    "homepage": "https://github.com/gongtiexin/up-utils/blob/master/readme.md",
+    "devDependencies": {
+        "@babel/cli": "^7.11.5",
+        "@babel/core": "^7.11.5",
+        "@babel/plugin-transform-runtime": "^7.11.5",
+        "@babel/preset-env": "^7.11.5",
+        "@babel/runtime": "^7.11.2",
+        "@babel/runtime-corejs3": "^7.11.2",
+        "add": "^2.0.6",
+        "babel-eslint": "^10.1.0",
+        "babel-loader": "^8.1.0",
+        "clean-webpack-plugin": "^3.0.0",
+        "eslint": "^7.8.1",
+        "eslint-config-alloy": "^3.8.0",
+        "husky": "^4.2.5",
+        "prettier": "^2.1.1",
+        "terser-webpack-plugin": "^4.1.0",
+        "webpack": "^4.44.1",
+        "webpack-cli": "^3.3.12",
+        "yarn": "^1.22.5"
+    },
+    "dependencies": {
+        "core-js": "^3.6.5",
+        "lint-staged": "^10.2.13",
+        "lodash": "^4.17.20",
+        "regenerator-runtime": "^0.13.7"
     }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gongtiexin/up-utils.git"
-  },
-  "keywords": [
-    "navi"
-  ],
-  "files": [
-    "lib/"
-  ],
-  "author": "gongtiexin",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gongtiexin/up-utils/issues"
-  },
-  "homepage": "https://github.com/gongtiexin/up-utils/blob/master/readme.md",
-  "devDependencies": {
-    "@babel/cli": "^7.6.0",
-    "@babel/core": "^7.6.0",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-proposal-decorators": "^7.4.4",
-    "@babel/plugin-proposal-export-default-from": "^7.5.2",
-    "@babel/plugin-proposal-export-namespace-from": "^7.5.2",
-    "@babel/plugin-proposal-function-sent": "^7.5.0",
-    "@babel/plugin-proposal-json-strings": "^7.0.0",
-    "@babel/plugin-proposal-logical-assignment-operators": "^7.0.0",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
-    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
-    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
-    "@babel/plugin-proposal-pipeline-operator": "^7.5.0",
-    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/plugin-syntax-import-meta": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.6.0",
-    "@babel/preset-env": "^7.5.5",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.3.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.2.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^2.0.1",
-    "husky": "^3.0.5",
-    "prettier": "^1.18.2",
-    "rimraf": "^3.0.0"
-  },
-  "dependencies": {
-    "core-js": "^3.2.1",
-    "lint-staged": "^9.2.5",
-    "lodash": "^4.17.15",
-    "regenerator-runtime": "^0.13.3"
-  }
 }

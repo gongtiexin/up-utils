@@ -1,22 +1,2 @@
-# Created by .ignore support plugin (hsz.mobi)
-
-/dist
-/static
-/scripts
-/.idea
-
-.eslintignore
-.gitignore
-.prettierignore
-.npmignore
-.DS_Store
-
-yarn.lock
-
-*.tar.gz
-*.zip
-
-#grcp
-*.proto
-
-*.sh
+dist/
+node_modules/

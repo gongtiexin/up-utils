@@ -1,12 +1,30 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-import * as upNumber from './number';
 import * as upObject from './object';
-import * as upArray from './array';
 import * as upStorage from './storage';
-import * as upString from './string';
-import * as utils from './utils';
-import computedEchartsOption from './echarts.v4';
+import computedEchartsOption from './echarts';
 
-export { upString, upNumber, upObject, upArray, upStorage, utils, computedEchartsOption };
+/**
+ * 全屏
+ * */
+// 判断各种浏览器，找到正确的方法
+const launchFullScreen = (element) => {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+    }
+};
+
+const fullScreen = (element = 'all') => {
+    if (element === 'all') {
+        launchFullScreen(document.documentElement);
+    } else launchFullScreen(document.getElementById(element));
+};
+
+export { upObject, upStorage, fullScreen, computedEchartsOption };
